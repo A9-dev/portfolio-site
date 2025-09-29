@@ -1,5 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
+import Navbar from "../../components/Navbar.astro";
+import "../../styles/globals.css";
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -13,5 +15,20 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<h1>{post.data.title}</h1>
-<Content />
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{post.data.title}</title>
+  </head>
+  <body>
+    <Navbar />
+    <div class="flex flex-col items-center justify-center mt-16">
+      <div class="prose prose-zinc prose-lg">
+        <h1>{post.data.title}</h1>
+        <Content />
+      </div>
+    </div>
+  </body>
+</html>
