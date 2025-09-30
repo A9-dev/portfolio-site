@@ -1,32 +1,20 @@
 ---
-import "../../styles/globals.css";
+import BaseLayout from "../../components/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import Navbar from "../../components/Navbar.astro";
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Blog</title>
-  </head>
-  <body>
-    <Navbar />
-    <div class="flex flex-col items-center justify-center mt-16">
-      <h1 class="text-6xl font-bold">Blog</h1>
-      <ul class="mt-8">
-        {
-          posts.map((post) => (
-            <li class="text-lg text-zinc-600">
-              <a href={`/blog/${post.id}`}>{post.data.title}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </body>
-</html>
+<BaseLayout title="Blog">
+  <h1 class="text-6xl font-bold">Blog</h1>
+  <ul class="mt-8">
+    {
+      posts.map((post) => (
+        <li class="text-lg text-zinc-600">
+          <a href={`/blog/${post.id}`}>{post.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

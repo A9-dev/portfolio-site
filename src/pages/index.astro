@@ -1,21 +1,8 @@
 ---
-import "../styles/globals.css";
-import Navbar from "../components/Navbar.astro";
+import BaseLayout from "../components/BaseLayout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <Navbar />
-    <div class="flex flex-col items-center justify-center mt-16">
-      <h1 class="text-6xl font-bold">Henry's Portfolio</h1>
-      <p class="mt-4 text-lg text-zinc-600">See my work and progression!</p>
-    </div>
-  </body>
-</html>
+<BaseLayout>
+  <h1 class="text-6xl font-bold">Henry's Portfolio</h1>
+  <p class="mt-4 text-lg text-zinc-600">See my work and progression!</p>
+</BaseLayout>

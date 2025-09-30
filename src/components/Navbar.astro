@@ -1,8 +1,40 @@
 ---
 ---
-<nav class="flex justify-center w-full mt-8">
-    <div class="flex flex-row justify-around w-1/4 px-4 py-2 bg-zinc-900/10 rounded-full">
-        <a href="/">home</a>
-        <a href="/blog">blog</a>
+<nav class="flex justify-center w-full p-8">
+    <div class="flex flex-row justify-around w-1/4 px-4 py-2 bg-zinc-900/10 rounded-lg">
+        <a 
+            href="/" 
+            class="relative px-2 transition-colors duration-200 hover:text-blue-500 group"
+        >
+            home
+            <span 
+                class="absolute left-0 -bottom-1 w-full h-0.5 bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 pointer-events-none"
+            ></span>
+        </a>
+        <a 
+            href="/blog" 
+            class="relative px-2 transition-colors duration-200 hover:text-blue-500 group"
+        >
+            blog
+            <span 
+                class="absolute left-0 -bottom-1 w-full h-0.5 bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 pointer-events-none"
+            ></span>
+        </a>
     </div>
+    <script type="module" is:inline>
+        const nav = document.currentScript.parentElement;
+        const links = nav.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('mousemove', (e) => {
+                const underline = link.querySelector('span');
+                const rect = link.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                underline.style.transformOrigin = `${(x / rect.width) * 100}% 100%`;
+            });
+            link.addEventListener('mouseleave', () => {
+                const underline = link.querySelector('span');
+                underline.style.transformOrigin = `left`;
+            });
+        });
+    </script>
 </nav>

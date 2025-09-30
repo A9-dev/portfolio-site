@@ -1,0 +1,23 @@
+---
+import "../styles/globals.css";
+import Navbar from "./Navbar.astro";
+import "@fontsource-variable/nunito-sans";
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title || "Henry's Portfolio"}</title>
+  </head>
+  <body class="min-h-screen">
+    <Navbar />
+    <main class="flex flex-col items-center justify-center mt-16">
+      <slot />
+    </main>
+  </body>
+</html>
