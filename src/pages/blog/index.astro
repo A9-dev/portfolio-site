@@ -1,20 +1,58 @@
 ---
 import BaseLayout from "../../components/BaseLayout.astro";
-import { getCollection } from "astro:content";
-const posts = (await getCollection("blog")).sort(
+import { getCollection, type CollectionEntry } from "astro:content";
+
+const posts: CollectionEntry<"blog">[] = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+type PostsByDate = Record<string, CollectionEntry<"blog">[]>;
+
+const postsByDate = posts.reduce((acc, post) => {
+  const date = post.data.pubDate.toISOString().split("T")[0];
+  if (!acc[date]) {
+    acc[date] = [];
+  }
+  acc[date].push(post);
+  return acc;
+}, {} as PostsByDate);
 ---
 
 <BaseLayout title="Blog">
   <h1 class="text-6xl font-bold">Progression Log</h1>
-  <ul class="mt-8">
+  <div class="mt-8">
     {
-      posts.map((post) => (
-        <li class="text-lg width-full mb-4 bg-slate-300/50 p-4 rounded-lg hover:bg-slate-400/50 transition-colors">
-          <a href={`/blog/${post.id}`}>{post.data.title}</a>
-        </li>
+      // All the errors in this section will now be resolved
+      Object.entries(postsByDate).map(([date, posts]) => (
+        <div class="mb-8">
+          <h2 class="text-2xl font-bold mb-4">{date}</h2>
+          {posts.map((post, index) => (
+            <>
+              <a
+                href={`/blog/${post.id}`}
+                class="block rounded-lg hover:bg-slate-400/50 transition-colors"
+              >
+                <ul class="list-disc pl-5">
+                  {post.data.worklog?.map((log) => (
+                    <li class="mb-2">
+                      <span class="font-bold">{log.type}</span>
+                      {log.area && log.area.length > 0 && (
+                        <span class="font-normal text-gray-500">
+                          ({log.area.join(", ")})
+                        </span>
+                      )}
+                      : {log.summary}
+                    </li>
+                  ))}
+                </ul>
+              </a>
+              {index !== posts.length - 1 && (
+                <hr class="my-4 border-slate-300" />
+              )}
+            </>
+          ))}
+        </div>
       ))
     }
-  </ul>
+  </div>
 </BaseLayout>

@@ -17,6 +17,23 @@ const { Content } = await render(post);
 
 <BaseLayout title={post.data.title}>
   <h1 class="text-6xl font-bold">{post.data.title}</h1>
+  {post.data.worklog && (
+    <div class="mt-8">
+      <h2 class="text-2xl font-bold mb-4">Worklog</h2>
+      <ul class="list-disc pl-5">
+        {post.data.worklog.map((log) => (
+          <li class="mb-2">
+            <span class="font-bold">{log.type}</span>
+            {log.area && log.area.length > 0 && (
+              <span class="font-normal text-gray-500">
+                ({log.area.join(", ")})
+              </span>
+            )}: {log.summary}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
   <div class="prose prose-lg mt-8">
     <Content />
   </div>
