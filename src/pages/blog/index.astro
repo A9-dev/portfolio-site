@@ -7,11 +7,11 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <BaseLayout title="Blog">
-  <h1 class="text-6xl font-bold">Blog</h1>
+  <h1 class="text-6xl font-bold">Progression Log</h1>
   <ul class="mt-8">
     {
       posts.map((post) => (
-        <li class="text-lg text-zinc-600">
+        <li class="text-lg width-full mb-4 bg-slate-300/50 p-4 rounded-lg hover:bg-slate-400/50 transition-colors">
           <a href={`/blog/${post.id}`}>{post.data.title}</a>
         </li>
       ))
