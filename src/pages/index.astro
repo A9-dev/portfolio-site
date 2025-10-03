@@ -1,9 +1,13 @@
 ---
 import Title from "../components/Title.astro";
 import BaseLayout from "../components/BaseLayout.astro";
+const posts = await Astro.glob("../data/index/index.mdx");
+const { Content } = posts[0];
 ---
 
 <BaseLayout>
   <Title>Henry's Portfolio</Title>
-  <p class="mt-4 text-lg text-zinc-600">See my work and progression!</p>
+  <div class="prose lg:prose-lg">
+    <Content />
+  </div>
 </BaseLayout>
