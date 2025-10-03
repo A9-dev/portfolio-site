@@ -1,4 +1,5 @@
 ---
+import Title from "../../components/Title.astro";
 import WorklogPost from "../../components/WorklogPost.astro";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../components/BaseLayout.astro";
@@ -17,7 +18,7 @@ const { Content } = await render(post);
 <BaseLayout title={post.data.title}>
   <article class="max-w-3xl mx-auto flex flex-col gap-y-8">
     <header class="flex flex-col items-center gap-y-4">
-      <h1 class="text-6xl font-bold text-center">{post.data.title}</h1>
+      <Title>{post.data.title}</Title>
       <time
         datetime={post.data.pubDate.toISOString()}
         class="text-xl text-gray-500"

@@ -1,4 +1,5 @@
 ---
+import Title from "../../components/Title.astro";
 import WorklogPost from "../../components/WorklogPost.astro";
 import BaseLayout from "../../components/BaseLayout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
@@ -20,7 +21,7 @@ const postsByDate = posts.reduce((acc, post) => {
 ---
 
 <BaseLayout title="Blog">
-  <h1 class="text-6xl font-bold">Progression Log</h1>
+  <Title>Progression Log</Title>
   <div class="mt-8 max-w-2xl mx-auto px-4">
     {
       // All the errors in this section will now be resolved
