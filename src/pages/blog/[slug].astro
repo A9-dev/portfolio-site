@@ -1,8 +1,8 @@
 ---
+import WorklogPost from "../../components/WorklogPost.astro";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../components/BaseLayout.astro";
 
-// 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
   return posts.map((post) => ({
@@ -10,36 +10,24 @@ export async function getStaticPaths() {
     props: { post },
   }));
 }
-// 2. For your template, you can get the entry directly from the prop
 const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BaseLayout title={post.data.pubDate.toDateString()}>
-  {
-    post.data.worklog && (
-      <div>
-        <h1 class="text-6xl font-bold mb-4">{post.data.title}</h1>
-        <h2 class="text-2xl font-bold mb-2">
-          {post.data.pubDate.toDateString()}
-        </h2>
-        <ul class="list-disc pl-5">
-          {post.data.worklog.map((log) => (
-            <li class="mb-2">
-              <span class="font-bold">{log.type}</span>
-              {log.area && log.area.length > 0 && (
-                <span class="font-normal text-gray-500">
-                  ({log.area.join(", ")})
-                </span>
-              )}
-              : {log.summary}
-            </li>
-          ))}
-        </ul>
-      </div>
-    )
-  }
-  <div class="prose prose-lg mt-8">
-    <Content />
-  </div>
+<BaseLayout title={post.data.title}>
+  <article class="max-w-3xl mx-auto flex flex-col gap-y-8">
+    <header class="flex flex-col items-center gap-y-4">
+      <h1 class="text-6xl font-bold text-center">{post.data.title}</h1>
+      <time
+        datetime={post.data.pubDate.toISOString()}
+        class="text-xl text-gray-500"
+      >
+        {post.data.pubDate.toDateString()}
+      </time>
+      {post.data.worklog && <WorklogPost post={post} />}
+    </header>
+    <div class="prose prose-lg">
+      <Content />
+    </div>
+  </article>
 </BaseLayout>
