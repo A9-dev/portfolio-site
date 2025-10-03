@@ -16,9 +16,9 @@ const { Content } = await render(post);
 ---
 
 <BaseLayout title={post.data.title}>
+  <Title class="text-center">{post.data.title}</Title>
   <article class="max-w-3xl mx-auto flex flex-col gap-y-8">
     <header class="flex flex-col items-center gap-y-4">
-      <Title>{post.data.title}</Title>
       <time
         datetime={post.data.pubDate.toISOString()}
         class="text-xl text-gray-500"

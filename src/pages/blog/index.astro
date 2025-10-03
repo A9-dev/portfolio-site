@@ -22,7 +22,7 @@ const postsByDate = posts.reduce((acc, post) => {
 
 <BaseLayout title="Blog">
   <Title>Progression Log</Title>
-  <div class="mt-8 max-w-2xl mx-auto px-4">
+  <div class="max-w-2xl mx-auto px-4">
     {
       // All the errors in this section will now be resolved
       Object.entries(postsByDate).map(([date, posts]) => (
