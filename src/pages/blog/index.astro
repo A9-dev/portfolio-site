@@ -20,7 +20,7 @@ const postsByDate = posts.reduce((acc, post) => {
 
 <BaseLayout title="Blog">
   <h1 class="text-6xl font-bold">Progression Log</h1>
-  <div class="mt-8">
+  <div class="mt-8 max-w-2xl mx-auto px-4">
     {
       // All the errors in this section will now be resolved
       Object.entries(postsByDate).map(([date, posts]) => (
@@ -30,24 +30,26 @@ const postsByDate = posts.reduce((acc, post) => {
             <>
               <a
                 href={`/blog/${post.id}`}
-                class="block rounded-lg hover:bg-slate-400/50 transition-colors"
+                class="block rounded-lg hover:bg-slate-400/50 transition-colors px-4 py-2"
               >
                 <ul class="list-disc pl-5">
                   {post.data.worklog?.map((log) => (
                     <li class="mb-2">
-                      <span class="font-bold">{log.type}</span>
-                      {log.area && log.area.length > 0 && (
-                        <span class="font-normal text-gray-500">
-                          ({log.area.join(", ")})
-                        </span>
-                      )}
-                      : {log.summary}
+                      <>
+                        <span class="font-bold">{log.type}</span>
+                        {log.area && log.area.length > 0 && (
+                          <span class="font-normal text-gray-500">
+                            ({log.area.join(", ")}):
+                          </span>
+                        )}
+                        <span class="text-pretty">{log.summary}</span>
+                      </>
                     </li>
                   ))}
                 </ul>
               </a>
               {index !== posts.length - 1 && (
-                <hr class="my-4 border-slate-300" />
+                <hr class="my-2 border-slate-300" />
               )}
             </>
           ))}
