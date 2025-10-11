@@ -6,7 +6,6 @@ body {
   font-family: "Nunito Sans Variable", sans-serif;
   background-color: #f4f4f5;
   color: #18181b;
-  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 [data-astro-transition-scope] {
   isolation: isolate;
