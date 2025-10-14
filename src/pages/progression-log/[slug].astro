@@ -5,7 +5,7 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "../../components/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("progressionLog");
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },

@@ -4,11 +4,11 @@ import WorklogPost from "../../components/WorklogPost.astro";
 import BaseLayout from "../../components/BaseLayout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 
-const posts: CollectionEntry<"blog">[] = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const posts: CollectionEntry<"progressionLog">[] = (
+  await getCollection("progressionLog")
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-type PostsByDate = Record<string, CollectionEntry<"blog">[]>;
+type PostsByDate = Record<string, CollectionEntry<"progressionLog">[]>;
 
 const postsByDate = posts.reduce((acc, post) => {
   const date = post.data.pubDate.toISOString().split("T")[0];
@@ -20,7 +20,7 @@ const postsByDate = posts.reduce((acc, post) => {
 }, {} as PostsByDate);
 ---
 
-<BaseLayout title="Blog">
+<BaseLayout title="Progression Log">
   <Title>Progression Log</Title>
   <div class="max-w-2xl mx-auto px-4">
     {
@@ -31,7 +31,7 @@ const postsByDate = posts.reduce((acc, post) => {
           {posts.map((post, index) => (
             <>
               <a
-                href={`/blog/${post.id}`}
+                href={`/progression-log/${post.id}`}
                 class="block rounded-lg hover:bg-slate-400/50 transition-colors px-4 py-2"
               >
                 <WorklogPost post={post} />
