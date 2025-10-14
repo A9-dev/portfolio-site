@@ -17,13 +17,14 @@ A lightweight convention for recording personal growth and progression, inspired
 
 ## Types
 
-- **learn** — something you studied or understood
-- **practice** — skill drills, repetition, or applied knowledge
-- **achieve** — milestone, completed goal, or success
-- **struggle** — obstacle, difficulty, or setback
-- **reflect** — insight, realization, or retrospective thought
-- **plan** — future step, target, or intention
-- **meta** — change to the progression tracking system itself
+- **learn**: something you studied or understood
+- **work**: something you did at work
+- **practice**: skill drills, repetition, or applied knowledge
+- **achieve**: milestone, completed goal, or success
+- **struggle**: obstacle, difficulty, or setback
+- **reflect**: insight, realization, or retrospective thought
+- **plan**: future step, target, or intention
+- **meta**: change to the progression tracking system itself
 
 ---
 
