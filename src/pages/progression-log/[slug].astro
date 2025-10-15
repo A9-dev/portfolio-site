@@ -23,7 +23,7 @@ const { Content } = await render(post);
         datetime={post.data.pubDate.toISOString()}
         class="text-xl text-gray-500"
       >
-        {post.data.pubDate.toDateString()}
+        {post.data.pubDate.toLocaleDateString()}
       </time>
       {post.data.worklog && <WorklogPost post={post} />}
     </header>
