@@ -22,27 +22,30 @@ const postsByDate = posts.reduce((acc, post) => {
 
 <BaseLayout title="Progression Log">
   <Title>Progression Log</Title>
-  <div class="max-w-2xl mx-auto px-4">
-    {
-      // All the errors in this section will now be resolved
-      Object.entries(postsByDate).map(([date, posts]) => (
-        <div class="mb-8">
-          <h2 class="text-2xl font-bold mb-4">{date}</h2>
-          {posts.map((post, index) => (
-            <>
-              <a
-                href={`/progression-log/${post.id}`}
-                class="block rounded-lg hover:bg-slate-400/50 transition-colors px-4 py-2"
-              >
-                <WorklogPost post={post} />
-              </a>
-              {index !== posts.length - 1 && (
-                <hr class="my-2 border-slate-300" />
-              )}
-            </>
-          ))}
-        </div>
-      ))
-    }
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="flex flex-col gap-12">
+      {
+        Object.entries(postsByDate).map(([date, posts]) => (
+          <div class="flex flex-col md:flex-row md:gap-6">
+            <div class="flex-shrink-0 md:w-32">
+              <h2 class="text-xl font-bold mb-2 md:mb-0">
+                {new Date(date).toLocaleDateString()}
+              </h2>
+            </div>
+
+            <div class="flex w-full flex-col gap-2">
+              {posts.map((post) => (
+                <a
+                  href={`/progression-log/${post.id}`}
+                  class="block rounded-lg hover:bg-slate-400/50 transition-colors px-4 py-2"
+                >
+                  <WorklogPost post={post} />
+                </a>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
   </div>
 </BaseLayout>
