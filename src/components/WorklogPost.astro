@@ -8,10 +8,10 @@ interface Props {
 const { post } = Astro.props;
 ---
 
-<ul class="list-disc pl-5">
+<ul class="list-disc pl-5 gap-2 flex flex-col">
   {
     post.data.worklog?.map((log) => (
-      <li class="mb-2">
+      <li>
         <>
           <span class="font-bold">{log.type}</span>
           {log.area && log.area.length > 0 && (
