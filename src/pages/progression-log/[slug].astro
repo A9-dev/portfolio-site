@@ -16,7 +16,7 @@ const { Content } = await render(post);
 ---
 
 <BaseLayout title={post.data.title}>
-  <Title class="text-center">{post.data.title}</Title>
+  <Title class="text-center">{post.data.title || "Worklog Post"}</Title>
   <article class="max-w-3xl mx-auto flex flex-col gap-y-8">
     <header class="flex flex-col items-center gap-y-4">
       <time
