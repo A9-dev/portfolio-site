@@ -1,0 +1,19 @@
+---
+pubDate: "2025-10-28"
+updatedDate: "2025-10-31"
+worklog:
+  - type: "practice"
+    area: ["Event Driven Architecture", "RabbitMQ"]
+    summary: "implemented a dummy distributed notification system"
+---
+
+## Distributed Notification System
+
+Link: [https://github.com/A9-dev/distributed-notifications](https://github.com/A9-dev/distributed-notifications)
+
+I built a small distributed notification system to get hands-on experience with RabbitMQ.
+The project consists of two main components: a notification-event-emitter, and a text-notification handler which communicate through a RabbitMQ message queue.
+
+The notification-event-emitter generates notification events and publishes them to a RabbitMQ exchange, while the text-notification handler subscribes to the relevant queue to process and display the notifications.
+
+Doing this project taught me about concepts like message durability, acknowledgments and prefetch counts. It was also a good exercise in setting up a multi service project using docker and docker compose!
