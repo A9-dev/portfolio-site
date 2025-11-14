@@ -13,6 +13,7 @@
     "@fontsource-variable/nunito-sans": "^5.2.7",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.13",
+    "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.14.1",
     "tailwindcss": "^4.1.13"
   }
