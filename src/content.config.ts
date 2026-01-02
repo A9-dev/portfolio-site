@@ -6,7 +6,10 @@ import { glob, file } from "astro/loaders";
 
 // 3. Define your collection(s)
 const progressionLog = defineCollection({
-  loader: glob({ pattern: "**/*.(md|mdx)", base: "./src/data/progression-log" }),
+  loader: glob({
+    pattern: "**/*.(md|mdx)",
+    base: "./src/data/progression-log",
+  }),
   schema: z.object({
     title: z.string().optional(),
     pubDate: z.coerce.date(),
@@ -18,7 +21,7 @@ const progressionLog = defineCollection({
           type: z.string(),
           area: z.array(z.string()),
           summary: z.string(),
-        })
+        }),
       )
       .optional(),
   }),
