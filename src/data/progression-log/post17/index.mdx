@@ -1,0 +1,108 @@
+---
+pubDate: "2026-01-28"
+updatedDate: "2026-02-04"
+worklog:
+  - type: "conference"
+    area: ["NDC London"]
+    summary: "Keynote - The Dangers of Probably-Working Software"
+  - type: "conference"
+    area: ["NDC London"]
+    summary: "Beyond Pub/Sub - Advanced Messaging Patterns"
+  - type: "conference"
+    area: ["NDC London"]
+    summary: "Do It With Style - Rethinking CSS"
+  - type: "conference"
+    area: ["NDC London"]
+    summary: "Modular Monoliths and Other Facepalms"
+  - type: "conference"
+    area: ["NDC London"]
+    summary: "Modern .NET Configuration Practices"
+  - type: "conference"
+    area: ["NDC London"]
+    summary: "Java Sucks (So C# Didn't Have To)"
+  - type: "conference"
+    area: ["NDC London"]
+    summary: "Immutable Patterns of System Design - From Monolith to Agentic AI"
+---
+
+## NDC London Day 3
+
+These are the talks I attended on Day 3 of [NDC London](https://ndclondon.com) 2026!
+
+### Keynote: The Dangers of Probably-Working Software
+
+Software used to be predictable. You could trace the logic, reason about behaviour, and prove the results. Better tools have made us faster and allowed us to build more with less effort. But the further we step away from the code, the less control we really have.
+
+This is not a new problem, but it's more relevant than ever. Generative AI has dropped the barrier to entry dramatically, and it's never been easier to produce probably-working software with a single prompt.
+So how do we avoid sleepwalking into brittle, opaque systems that only appear correct? When is "good enough" actually good enough? And when the result always looks right, how do we know when to step in?
+
+### Beyond Pub/Sub - Advanced Messaging Patterns
+
+Publish/subscribe is often the first pattern teams adopt when moving toward asynchronous, message-based architectures. It’s a powerful way to decouple services and enable extensibility—but on its own, pub/sub doesn’t solve many of the problems that show up in real distributed systems, such as data loss, broken workflows, or systems that struggle under load.
+
+In this session, we’ll go beyond basic pub/sub to explore a set of proven messaging patterns used in production. We’ll look at how the Outbox pattern prevents message loss during failures, how sagas coordinate long-running workflows without distributed transactions, how scatter-gather accelerates work through parallelism, and how competing consumers enable elastic throughput when demand spikes. Along the way, we’ll also examine essential operational safeguards such as retries, dead-letter queues, back pressure, and idempotency.
+
+By the end of the talk, you’ll understand when and how to apply these patterns to build systems that are not just decoupled, but resilient, scalable, and designed to handle failure gracefully from day one.
+
+### Do It With Style - Rethinking CSS
+
+Cascading Style Sheets. CSS. The language everybody loves to hate. Everything's global, there's no control flow, there's no error messages... in fact, some people say it isn't even a real programming language.
+
+But CSS isn't just about making websites look pretty. It's one of the fundamental building blocks of the open web, and it's continuously evolving. Modern CSS has variables, grids, flexboxes, animations, view transitions... when it comes to layout, accessibility, interaction and validation, CSS can do all kinds of things you thought you could only do with JavaScript.
+
+Dylan Beattie's been building web applications since before CSS was invented - yes, really - and in this session, he'll take you on a whirlwind tour of some of the weird and wonderful things you can do in 2026 using semantic HTML, a generous sprinkling of CSS, and absolutely no JavaScript.
+
+OK, maybe a tiny bit of JavaScript. But absolutely no React.
+
+### Modular Monoliths and Other Facepalms
+
+If trends are to be believed, modular monoliths are the new kid on the architecture block. They're sold as an antidote to the complexity associated with overdosing on microservices. Except for one problem: modular monoliths are not a new idea or architectural style, just a new turn of phrase. The current trend is the pendulum swinging back with the benefit of some rebranding. At best it's "Monoliths, but we're going to do them right this time, we promise!" At worst it's "Oh no, here we go again."
+
+Many teams adopted microservices not for their runtime or deployment benefits, but because they sought refuge from the tangled mess of their monolithic codebases. They wanted microservices because they reinforced partitioning. But as Simon Brown notes, "If you can't build a monolith, what makes you think microservices are the answer?" In practice, what many teams discovered is that what gets reinforced is poor partitioning.
+
+There's a generation of developers who have only worked with microservices over their careers, for whom modularity in other forms is a new-to-them discovery. In this talk, we will look at the history of modularity in programming languages and software architecture from the 1960s to the present, taking in the sights and sounds of information hiding, data abstraction, component-based development, process-based architectures and more.
+
+### Modern .NET Configuration Practices
+
+Modern .NET applications mark a major shift from the legacy .NET Framework era. With that evolution comes a critical need to rethink how we manage configuration. Gone are the days of fragile web.config files and hardcoded secrets in source control. These outdated practices are not just inefficient, they’re a recipe for outages.
+
+As someone with a background in resiliency engineering, I’ve seen firsthand how a single mismanaged configuration change can take down an entire system. This session is about preventing that. We’ll cover how configuration works under the hood, and more importantly, how to test configuration changes safely so you can deploy with confidence and avoid costly surprises.
+We’ll also dive into practical, battle-tested strategies for modernizing configuration management in your .NET projects while boosting security, scalability, and uptime.
+
+You’ll Learn How To:
+
+Strongly Typed Configuration: Improve readability and catch errors early.
+Configuration Providers: Leverage JSON, XML, INI, environment variables, Azure App Config, and Key Vault effectively.
+Dependency Injection Integration: Modularize and simplify your configuration logic.
+Options Pattern: Enable flexible, scalable settings across your app.
+Containerized Applications: Securely manage secrets and environment-specific configs in Docker and Kubernetes.
+Deployment Strategies: Inject configurations safely using Azure DevOps Pipelines, GitHub Actions, and Kubernetes manifests.
+.NET Aspire Configuration: Streamline service-oriented setups in distributed systems.
+
+Whether you're building cloud-native apps or modernizing legacy systems, this session will equip you with the tools and mindset to make configuration a strength, not a liability.
+
+### Java Sucks (So C# Didn't Have To)
+
+Using Java as an everyday language can be absolutely infuriating. It's verbose and clunky, with all roads seemingly pointing to null. These are faults that users of other languages (especially of C#) love to point out.
+
+At the same time, Java is mature, stable, backwards compatible, and runs just about anywhere. The community is pretty cool too!
+
+This talk takes a light-hearted, warts-and-all look at some of the more frustrating aspects of Java, how the language has evolved over time and where it's headed next. A discussion on the consequences of language design decisions that can be enjoyed by programmers of all languages, but especially by C# users.
+
+Expect to laugh, and yes maybe even cry, as we try to make sense of the beast that puts food on the table for millions of developers worldwide
+
+We will cover:
+
+- Pivotal early design decisions such as checked exceptions and generics and how we still pay for those decisions today (that is, why do lambdas suck so bad?)
+- How Java has influenced the development of other programming languages, and vice versa
+- Most controversial language design decisions of late and the associated fallouts
+
+Java developers will leave this session feeling validated and with a renewed love for the language that keeps a large chunk of the world running. C# developers will leave this session with a renewed level of smugness.
+
+### Immutable Patterns of System Design - From Monolith to Agentic AI
+
+Technology is changing rapidly and it often feels like the skills you learned just a few years ago are becoming obsolete. From simple, single process apps running on-premises, through the cloud revoloution. From monoliths to microservices. Service oriented architecture to event-driven architecture. And now, we have agentic AI. As someone working on modern software, you've got a lot to think about. But really, how much has actually changed?
+
+You still need your software to be reliable, performant and to solve a problem for your users. And regardless of what 'style' of system your building, there are some unchanging patterns that are always going to help you.
+
+In this talk, you'll learn all about these unchanging patterns of systems design. This isn't an escoteric talk. This is a talk that is going to give you practical patterns of system design that you can take away and use in your business. Whether your working on a 20 year old monolith, working on the cutting edge of agentic AI, or whatever hype train comes next in software development. You'll have the skills to ensure your systems are always reliable, performant and solve real problems.
