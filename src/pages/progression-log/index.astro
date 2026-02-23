@@ -27,7 +27,7 @@ const postsByDate = posts.reduce((acc, post) => {
       {
         Object.entries(postsByDate).map(([date, posts]) => (
           <div class="flex flex-col md:flex-row md:gap-4">
-            <div class="flex-shrink-0 md:w-32">
+            <div class="shrink-0 md:w-32">
               <h2 class="text-xl font-bold mb-2 mt-8 md:mb-0 md:mt-0">
                 {new Date(date).toLocaleDateString()}
               </h2>
