@@ -1,0 +1,22 @@
+---
+pubDate: "2026-02-22"
+updatedDate: "2026-02-23"
+worklog:
+  - type: "learn"
+    area: ["System Design"]
+    summary: "read chapter 2 of Designing Data-Intensive Applications"
+---
+
+## Designing Data-Intensive Applications
+
+Link: https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/
+
+### Chapter 2, Data Models and Query Languages
+
+This chapter explores how different data models shape the way we think about and solve problems. The choice of data model has a profound effect on what the software above it can do.
+
+- **Relational Model Versus Document Model** - the relational model has dominated for decades, but document databases have gained traction where data is naturally self-contained. The chapter covers the trade-offs between schema-on-read and schema-on-write, storage locality, and how document databases push join logic into application code.
+
+- **Query Languages for Data** - covers declarative vs imperative approaches. SQL is declarative (you describe what you want, not how to get it), which gives the query optimiser freedom to choose the best execution plan. MapReduce sits somewhere in between, using imperative code coordinated declaratively across a cluster.
+
+- **Graph-Like Data Models** - graph models shine when relationships are the central focus of your data. The chapter introduces property graphs, triple stores, and query languages like Cypher and SPARQL for traversing highly connected data.
