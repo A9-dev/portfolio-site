@@ -1,0 +1,22 @@
+---
+pubDate: "2026-02-26"
+updatedDate: "2026-02-26"
+worklog:
+  - type: "learn"
+    area: ["System Design"]
+    summary: "read chapter 3 of Designing Data-Intensive Applications"
+---
+
+## Designing Data-Intensive Applications
+
+Link: https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/
+
+### Chapter 3, Storage and Retrieval
+
+This chapter dives into how databases actually store and retrieve data. Understanding the internals helps you pick the right storage engine for your workload.
+
+- **Data Structures That Power Your Database** - at the core of most databases are log-structured engines (like LSM-trees) and page-oriented engines (like B-trees). Log-structured engines append writes and periodically compact, offering excellent write throughput. B-trees update fixed-size pages in place, providing consistent read performance.
+
+- **Transaction Processing or Analytics** - OLTP systems handle high volumes of small, fast queries that touch a few records at a time. OLAP systems handle complex queries that scan huge amounts of data for reporting. The access patterns are so different that many organisations keep separate systems, using ETL to load data into a warehouse optimised for analytics.
+
+- **Column-Oriented Storage** - row-oriented storage loads entire rows even when a query only needs a few columns. Column-oriented storage stores each column separately, allowing queries to read only what they need. This also enables better compression since values in a column tend to be similar.
