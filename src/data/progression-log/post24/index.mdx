@@ -1,0 +1,20 @@
+---
+pubDate: "2026-03-02"
+updatedDate: "2026-03-02"
+worklog:
+  - type: "learn"
+    area: ["System Design"]
+    summary: "read chapter 4 of Designing Data-Intensive Applications"
+---
+
+## Designing Data-Intensive Applications
+
+Link: https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/
+
+### Chapter 4, Encoding and Evolution
+
+This chapter covers how data is encoded for storage and communication, and how systems handle schema changes over time.
+
+- **Formats for Encoding Data** - in-memory data must be encoded to bytes for storage or transmission. Language-specific formats are convenient but inflexible. JSON and XML are human-readable and widely adopted, though they suffer from issues like limited number precision and poor binary data support. Binary formats like Protocol Buffers, Thrift, and Avro are compact, efficient, and support schema evolution with forward and backward compatibility.
+
+- **Modes of Dataflow** - data flows between processes via databases (where old and new code coexist reading the same data), services (REST/RPC requiring compatible schemas across rolling upgrades), and asynchronous message passing (brokers like Kafka decouple senders from receivers, handling speed and availability differences).
