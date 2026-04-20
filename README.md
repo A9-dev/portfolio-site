@@ -17,7 +17,6 @@ Each entry follows the syntax: `<type>(<area>): <short summary>`
 Entry types:
 
 - **learn** - something studied or understood
-- **work** - something done at work
 - **practice** - skill drills, repetition, or applied knowledge
 - **achieve** - milestone, completed goal, or success
 - **struggle** - obstacle, difficulty, or setback
