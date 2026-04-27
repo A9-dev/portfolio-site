@@ -10,13 +10,13 @@
     "lint": "eslint . --ext .ts,.tsx,.astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.6",
+    "@astrojs/mdx": "^5.0.4",
     "@fontsource-variable/nunito-sans": "^5.2.7",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.13",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
-    "astro": "^5.14.1",
+    "astro": "^6.1.9",
     "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
