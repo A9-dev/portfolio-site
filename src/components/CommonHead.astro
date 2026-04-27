@@ -10,3 +10,16 @@ const { title } = Astro.props;
 <meta name="generator" content={Astro.generator} />
 <title>{title || "Henry Pearson"}</title>
 <ClientRouter />
+<script is:inline>
+  function getIsDark() {
+    const stored = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return stored ? stored === "dark" : prefersDark;
+  }
+  // Apply on initial load
+  document.documentElement.classList.toggle("dark", getIsDark());
+  // Apply to the incoming document BEFORE the swap is rendered (prevents flash)
+  document.addEventListener("astro:before-swap", (e) => {
+    e.newDocument.documentElement.classList.toggle("dark", getIsDark());
+  });
+</script>

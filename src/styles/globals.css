@@ -8,11 +8,20 @@
 
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   body {
     font-family: "Nunito Sans Variable", sans-serif;
-    background-color: #f4f4f5;
+    background-color: oklch(92.2% 0 0);
     color: #18181b;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+  .dark body {
+    background-color: oklch(20.5% 0 0);
+    color: #f4f4f5;
   }
   [data-astro-transition-scope] {
     isolation: isolate;

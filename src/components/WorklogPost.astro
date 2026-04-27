@@ -16,7 +16,7 @@ const { post } = Astro.props;
           <>
             <span class="font-bold">{log.type}</span>
             {log.area && log.area.length > 0 && (
-              <span class="font-normal text-gray-500 leading-0">
+              <span class="font-normal text-gray-500 dark:text-gray-400 leading-0">
                 ({log.area.join(", ")}):
               </span>
             )}
