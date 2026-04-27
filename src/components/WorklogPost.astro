@@ -5,16 +5,38 @@ interface Props {
   post: CollectionEntry<"progressionLog">;
 }
 
+type WorklogItem = {
+  type: string;
+  area?: string[];
+  summary: string;
+};
+
 const { post } = Astro.props;
+
+const typeClasses: Record<string, string> = {
+  leetcode: "text-amber-700 dark:text-amber-300",
+  learn: "text-blue-700 dark:text-blue-300",
+  achieve: "text-emerald-700 dark:text-emerald-300",
+  conference: "text-fuchsia-700 dark:text-fuchsia-300",
+  plan: "text-cyan-700 dark:text-cyan-300",
+  practice: "text-violet-700 dark:text-violet-300",
+};
+
+const defaultTypeClasses = "text-gray-700 dark:text-gray-300";
+
+const getTypeClasses = (type: string) =>
+  typeClasses[type.toLowerCase()] ?? defaultTypeClasses;
 ---
 
 <div>
   <ul class="list-disc pl-5 gap-2 flex flex-col">
     {
-      post.data.worklog?.map((log) => (
+      post.data.worklog?.map((log: WorklogItem) => (
         <li>
           <>
-            <span class="font-bold">{log.type}</span>
+            <span class={`font-bold mr-1 ${getTypeClasses(log.type)}`}>
+              {log.type}
+            </span>
             {log.area && log.area.length > 0 && (
               <span class="font-normal text-gray-500 dark:text-gray-400 leading-0">
                 ({log.area.join(", ")}):
