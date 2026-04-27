@@ -21,13 +21,13 @@ const { Content } = await render(post);
     <header class="flex flex-col items-center gap-y-4">
       <time
         datetime={post.data.pubDate.toISOString()}
-        class="text-xl text-gray-500"
+        class="text-xl text-gray-500 dark:text-gray-400"
       >
         {post.data.pubDate.toLocaleDateString()}
       </time>
       {post.data.worklog && <WorklogPost post={post} />}
     </header>
-    <div class="prose prose-lg">
+    <div class="prose prose-lg dark:prose-invert">
       <Content />
     </div>
   </article>

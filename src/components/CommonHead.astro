@@ -10,3 +10,13 @@ const { title } = Astro.props;
 <meta name="generator" content={Astro.generator} />
 <title>{title || "Henry Pearson"}</title>
 <ClientRouter />
+<script is:inline>
+  function applyTheme() {
+    const stored = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = stored ? stored === "dark" : prefersDark;
+    document.documentElement.classList.toggle("dark", isDark);
+  }
+  applyTheme();
+  document.addEventListener("astro:after-swap", applyTheme);
+</script>
