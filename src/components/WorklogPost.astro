@@ -34,7 +34,9 @@ const getTypeClasses = (type: string) =>
       post.data.worklog?.map((log: WorklogItem) => (
         <li>
           <>
-            <span class={`font-bold mr-1 transition-colors duration-300 ${getTypeClasses(log.type)}`}>
+            <span
+              class={`font-bold mr-1 transition-colors duration-300 ${getTypeClasses(log.type)}`}
+            >
               {log.type}
             </span>
             {log.area && log.area.length > 0 && (
