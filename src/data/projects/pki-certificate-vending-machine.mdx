@@ -12,7 +12,7 @@ tags:
   - PKI
   - IAM
   - Lambda
-coverImage: "/images/projects/pki-certificate-vending-machine/cover-hero.svg"
+coverImage: "/images/projects/pki-certificate-vending-machine/cover-hero.jpg"
 seo:
   title: "API-Driven PKI on AWS"
   description: "Terraform and Go project for issuing short-lived X.509 certificates through an IAM-protected AWS API."
@@ -27,7 +27,7 @@ The goal was to show a small but realistic PKI workflow: clients generate keys l
 - Go Lambda that validates CSRs and signs certificates
 - Clear trade-offs called out for production hardening
 
-![Cover image placeholder for the certificate vending machine project](/images/projects/pki-certificate-vending-machine/cover-hero.svg)
+![Cover image placeholder for the certificate vending machine project](/images/projects/pki-certificate-vending-machine/cover-hero.jpg)
 
 _Placeholder image: hero graphic for the project._
 
@@ -52,9 +52,7 @@ This project models a simpler flow:
 - API Gateway uses `AWS_IAM`, so requests must be SigV4-signed.
 - A local Python test script generates a keypair, submits a CSR, and verifies the returned certificate.
 
-![Architecture diagram placeholder](/images/projects/pki-certificate-vending-machine/architecture-overview.svg)
-
-_Placeholder image: architecture diagram for the AWS certificate flow._
+![Architecture diagram placeholder](/images/projects/pki-certificate-vending-machine/architecture.svg)
 
 ## Certificate Flow
 
@@ -85,9 +83,7 @@ Response shape:
 }
 ```
 
-![Request and response flow placeholder](/images/projects/pki-certificate-vending-machine/request-response-flow.svg)
-
-_Placeholder image: sequence diagram for request signing and certificate issuance._
+![Request and response sequence diagram](/images/projects/pki-certificate-vending-machine/sequence_diagram.svg)
 
 ## Terraform
 
@@ -115,10 +111,6 @@ resource "terraform_data" "build_lambda" {
   }
 }
 ```
-
-![Terraform apply screenshot placeholder](/images/projects/pki-certificate-vending-machine/terraform-apply.svg)
-
-_Placeholder image: Terraform apply output for the main resources._
 
 ## Go Lambda Signer
 
@@ -164,7 +156,5 @@ For production I would change the following:
 ## What I Learned
 
 {/* TODO: Finish this section */}
-
-![Closing image placeholder](/images/projects/pki-certificate-vending-machine/closing-shot.svg)
 
 _Placeholder image: final collage or screenshot for the project page._
