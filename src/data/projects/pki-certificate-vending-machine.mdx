@@ -1,0 +1,170 @@
+---
+title: "Building an API-Driven Certificate Vending Machine with Terraform, AWS, and Go"
+slug: "pki-certificate-vending-machine"
+summary: "Terraform and Go project that provisions an IAM-protected AWS API for issuing short-lived X.509 certificates."
+publishedAt: "2026-05-07"
+published: true
+featured: true
+tags:
+  - Terraform
+  - AWS
+  - Go
+  - PKI
+  - IAM
+  - Lambda
+coverImage: "/images/projects/pki-certificate-vending-machine/cover-hero.svg"
+seo:
+  title: "API-Driven PKI on AWS"
+  description: "Terraform and Go project for issuing short-lived X.509 certificates through an IAM-protected AWS API."
+---
+
+This project provisions an IAM-protected certificate issuance API on AWS. It uses Terraform for infrastructure, API Gateway for the public entry point, a Go Lambda for signing, and Secrets Manager for CA material.
+
+The goal was to show a small but realistic PKI workflow: clients generate keys locally, submit a CSR, and receive a short-lived X.509 certificate. The scope is narrow, but it covers infrastructure, backend code, and security decisions in one system.
+
+- Terraform-managed infrastructure
+- IAM-protected API instead of an anonymous endpoint
+- Go Lambda that validates CSRs and signs certificates
+- Clear trade-offs called out for production hardening
+
+![Cover image placeholder for the certificate vending machine project](/images/projects/pki-certificate-vending-machine/cover-hero.svg)
+
+_Placeholder image: hero graphic for the project._
+
+## Problem
+
+Manual certificate issuance is slow and certificates often live too long. That increases operational overhead and expands the impact of key compromise.
+
+This project models a simpler flow:
+
+1. The client generates its own private key.
+2. The client creates a CSR with the requested identity.
+3. The client sends the CSR to an API.
+4. The API authenticates the caller with AWS IAM.
+5. The signer returns a short-lived certificate.
+
+## Architecture Overview
+
+- Terraform provisions the infrastructure.
+- Secrets Manager stores the demo CA certificate and private key.
+- A Go Lambda fetches the CA material and signs CSRs.
+- API Gateway exposes `POST /issue-cert`.
+- API Gateway uses `AWS_IAM`, so requests must be SigV4-signed.
+- A local Python test script generates a keypair, submits a CSR, and verifies the returned certificate.
+
+![Architecture diagram placeholder](/images/projects/pki-certificate-vending-machine/architecture-overview.svg)
+
+_Placeholder image: architecture diagram for the AWS certificate flow._
+
+## Certificate Flow
+
+1. A demo root CA is generated locally.
+2. Terraform uploads the CA material to Secrets Manager.
+3. Lambda is allowed to read only that secret.
+4. A client generates a private key and CSR.
+5. The client sends the CSR as JSON to the API.
+6. API Gateway authenticates the request with AWS IAM.
+7. Lambda validates the CSR and issues a short-lived certificate.
+8. The API returns the PEM certificate and expiry timestamp.
+
+Request shape:
+
+```json
+{
+  "csr": "-----BEGIN CERTIFICATE REQUEST-----\n...\n-----END CERTIFICATE REQUEST-----",
+  "ttl_hours": 12
+}
+```
+
+Response shape:
+
+```json
+{
+  "certificate": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
+  "not_after": "2026-05-08T05:39:10Z"
+}
+```
+
+![Request and response flow placeholder](/images/projects/pki-certificate-vending-machine/request-response-flow.svg)
+
+_Placeholder image: sequence diagram for request signing and certificate issuance._
+
+## Terraform
+
+The Terraform stack provisions:
+
+- A Secrets Manager secret for the CA material
+- An IAM role and inline policy for Lambda
+- A CloudWatch log group
+- A Lambda function using the `provided.al2` runtime
+- An HTTP API in API Gateway
+- An IAM-protected `POST /issue-cert` route
+- Lambda invoke permission for API Gateway
+
+Terraform also builds the Lambda binary locally before packaging it. That keeps the demo self-contained, even though a real deployment would move this step into CI.
+
+```hcl
+resource "terraform_data" "build_lambda" {
+  triggers_replace = {
+    source_hash = local.lambda_source_hash
+  }
+
+  provisioner "local-exec" {
+    working_dir = local.lambda_source_dir
+    command     = "mkdir -p ${local.lambda_build_dir} && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -tags lambda.norpc -o ${local.lambda_build_dir}/bootstrap ."
+  }
+}
+```
+
+![Terraform apply screenshot placeholder](/images/projects/pki-certificate-vending-machine/terraform-apply.svg)
+
+_Placeholder image: Terraform apply output for the main resources._
+
+## Go Lambda Signer
+
+The Lambda handles the PKI logic:
+
+- Parse the API Gateway event
+- Read the CA secret from Secrets Manager
+- Decode the certificate and private key
+- Parse and verify the PEM CSR
+- Create a short-lived certificate
+- Return the PEM certificate in the response
+
+Go was a good fit because the standard library already covers the crypto and X.509 work cleanly.
+
+One implementation detail worth calling out: the CA key was in PKCS#8 format, so the signer had to handle that instead of assuming PKCS#1.
+
+## Security Decisions
+
+The endpoint is not public. API Gateway uses `AWS_IAM`, so callers must sign requests with SigV4. That fits internal AWS workloads well because it reuses IAM identities, policies, and audit trails.
+
+The Lambda role is also narrow. It can:
+
+- Write logs to its own CloudWatch log group
+- Read exactly one Secrets Manager secret
+
+It cannot enumerate unrelated secrets or access other AWS resources.
+
+## Trade-Offs and Production Changes
+
+This is a demo system, not a production CA.
+
+The main shortcut is storing CA material in Secrets Manager instead of using a managed or externally backed CA. That kept cost and setup low, but it is not the production design I would recommend.
+
+For production I would change the following:
+
+- Use ACM Private CA or Vault-backed signing
+- Move Lambda build and packaging into CI
+- Encrypt and tightly control Terraform state
+- Add revocation strategy, certificate inventory, and stronger audit reporting
+- Add automated integration tests around the issuance path
+- Use a subordinate CA rather than exposing a root CA to the signer
+
+## What I Learned
+
+{/* TODO: Finish this section */}
+
+![Closing image placeholder](/images/projects/pki-certificate-vending-machine/closing-shot.svg)
+
+_Placeholder image: final collage or screenshot for the project page._
