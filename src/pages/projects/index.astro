@@ -1,0 +1,31 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../components/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import Title from "../../components/Title.astro";
+
+const projects: CollectionEntry<"projects">[] = (
+  await getCollection("projects", ({ data }) => data.published)
+).sort((a, b) => {
+  if (a.data.featured !== b.data.featured) {
+    return Number(b.data.featured) - Number(a.data.featured);
+  }
+
+  return b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf();
+});
+---
+
+<BaseLayout title="Projects">
+  <Title>Projects</Title>
+  <section class="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4">
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        projects.map((project) => (
+          <a href={`/projects/${project.data.slug}`} class="group block h-full">
+            <ProjectCard project={project} />
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
