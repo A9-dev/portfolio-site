@@ -13,7 +13,7 @@
 @layer base {
   body {
     font-family: "Nunito Sans Variable", sans-serif;
-    background-color: oklch(92.2% 0 0);
+    background-color: oklch(96.8% 0.007 247.896);
     color: #18181b;
     transition:
       background-color 0.3s ease,
