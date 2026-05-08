@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Terraform apply placeholder</title>
+  <desc id="desc">Template terminal-style screenshot showing a successful Terraform apply.</desc>
+  <rect width="1600" height="900" fill="#18181b" rx="32" />
+  <rect x="70" y="70" width="1460" height="760" rx="24" fill="#09090b" stroke="#3f3f46" stroke-width="4" />
+  <circle cx="120" cy="120" r="10" fill="#ef4444" />
+  <circle cx="155" cy="120" r="10" fill="#f59e0b" />
+  <circle cx="190" cy="120" r="10" fill="#22c55e" />
+  <text x="240" y="128" fill="#a1a1aa" font-family="monospace" font-size="26">terraform apply</text>
+  <g font-family="monospace" font-size="28">
+    <text x="110" y="220" fill="#f4f4f5">Terraform used the selected providers to generate the following execution plan.</text>
+    <text x="110" y="290" fill="#4ade80">  + aws_secretsmanager_secret.root_ca</text>
+    <text x="110" y="340" fill="#4ade80">  + aws_iam_role.lambda_signer</text>
+    <text x="110" y="390" fill="#4ade80">  + aws_cloudwatch_log_group.lambda</text>
+    <text x="110" y="440" fill="#4ade80">  + aws_lambda_function.signer</text>
+    <text x="110" y="490" fill="#4ade80">  + aws_apigatewayv2_api.cert_api</text>
+    <text x="110" y="540" fill="#4ade80">  + aws_apigatewayv2_route.issue_cert</text>
+    <text x="110" y="590" fill="#eab308">Plan: 6 to add, 0 to change, 0 to destroy.</text>
+    <text x="110" y="670" fill="#f4f4f5">Apply complete! Resources: 6 added, 0 changed, 0 destroyed.</text>
+    <text x="110" y="730" fill="#38bdf8">Outputs:</text>
+    <text x="140" y="780" fill="#f4f4f5">certificate_api_url = https://example.execute-api.eu-west-2.amazonaws.com</text>
+  </g>
+</svg>
