@@ -1,5 +1,5 @@
 ---
-title: "Building an API-Driven Certificate Vending Machine with Terraform, AWS, and Go"
+title: "Building an API-Driven Certificate Issuer with Terraform, AWS, and Go"
 slug: "pki-certificate-vending-machine"
 summary: "Terraform and Go project that provisions an IAM-protected AWS API for issuing short-lived X.509 certificates."
 publishedAt: "2026-05-07"
@@ -27,7 +27,7 @@ The goal was to show a small but realistic PKI workflow: clients generate keys l
 - Go Lambda that validates CSRs and signs certificates
 - Clear trade-offs called out for production hardening
 
-![Cover image placeholder for the certificate vending machine project](/images/projects/pki-certificate-vending-machine/cover-hero.jpg)
+![Cover image for the certificate issuer project](/images/projects/pki-certificate-vending-machine/cover-hero.jpg)
 
 _Placeholder image: hero graphic for the project._
 
@@ -155,6 +155,8 @@ For production I would change the following:
 
 ## What I Learned
 
-{/* TODO: Finish this section */}
-
-_Placeholder image: final collage or screenshot for the project page._
+- About **mTLS** and certificate issuing, the problems in distributed computing it aims to address, and the challenges it introduces (especially within a cloud environment).
+- Deeper details and tradeoffs in the following areas:
+  - Terraform (and backend state management methods)
+  - AWS IAM
+  - Golang API development
