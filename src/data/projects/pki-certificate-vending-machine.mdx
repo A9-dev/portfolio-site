@@ -29,8 +29,6 @@ The goal was to show a small but realistic PKI workflow: clients generate keys l
 
 ![Cover image for the certificate issuer project](/images/projects/pki-certificate-vending-machine/cover-hero.jpg)
 
-_Placeholder image: hero graphic for the project._
-
 ## Problem
 
 Manual certificate issuance is slow and certificates often live too long. That increases operational overhead and expands the impact of key compromise.
@@ -52,7 +50,7 @@ This project models a simpler flow:
 - API Gateway uses `AWS_IAM`, so requests must be SigV4-signed.
 - A local Python test script generates a keypair, submits a CSR, and verifies the returned certificate.
 
-![Architecture diagram placeholder](/images/projects/pki-certificate-vending-machine/architecture.svg)
+![Architecture diagram](/images/projects/pki-certificate-vending-machine/architecture.svg)
 
 ## Certificate Flow
 
