@@ -17,7 +17,7 @@ This chapter walks through the core building blocks of a distributed key-value s
 
 - **Partitioning with Consistent Hashing** - consistent hashing spreads keys across servers without forcing a full reshuffle every time the cluster changes. It helps with storing large datasets, incremental scaling, and supporting machines with different capacities.
 
-- **Replication and Tunable Consistency** - replicating data across multiple nodes improves read availability and fault tolerance. Quorum-based reads and writes let you tune the balance between consistency and availability, while multi-data center replication helps the system tolerate larger outages.
+- **Replication and Tunable Consistency** - replicating data across multiple nodes improves read availability and fault tolerance. Quorum-based reads and writes let you tune the balance between consistency and availability, while multi-data centre replication helps the system tolerate larger outages.
 
 - **Versioning and Conflict Resolution** - if you want highly available writes, replicas can diverge temporarily. The chapter uses vector clocks to keep track of causality so conflicts can be detected and resolved instead of silently overwriting data.
 
