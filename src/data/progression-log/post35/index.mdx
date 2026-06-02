@@ -4,6 +4,9 @@ updatedDate: "2026-06-02"
 worklog:
   - type: "learn"
     area: ["System Design"]
+    summary: "read chapter 7 of System Design Interview"
+  - type: "learn"
+    area: ["System Design"]
     summary: "read chapter 6 of System Design Interview"
 ---
 
@@ -22,3 +25,15 @@ This chapter walks through the core building blocks of a distributed key-value s
 - **Versioning and Conflict Resolution** - if you want highly available writes, replicas can diverge temporarily. The chapter uses vector clocks to keep track of causality so conflicts can be detected and resolved instead of silently overwriting data.
 
 - **Failure Handling and Repair** - temporary failures can be handled with sloppy quorum and hinted handoff, while permanent replica drift can be repaired with Merkle trees. Together, these techniques help the system recover without requiring full data copies between nodes.
+
+### Chapter 7, Design a Unique ID Generator in Distributed Systems
+
+This chapter compares several ways to generate unique IDs across distributed systems and explains why a Snowflake-style approach is usually the most practical choice.
+
+- **Multi-Master Replication** - letting multiple database nodes generate IDs can work, but it ties ID generation to the database layer and becomes harder to scale and coordinate cleanly in distributed environments.
+
+- **UUIDs** - UUIDs are easy to generate independently without coordination, which makes them attractive for distributed systems. The trade-off is that they are large, not naturally ordered, and can be less efficient for storage and indexing.
+
+- **Ticket Server** - a central ticket server gives you simple, increasing numeric IDs, but it introduces a single critical dependency. That server can become both a bottleneck and a single point of failure unless you add more complexity around availability.
+
+- **Twitter Snowflake** - the Snowflake-style design combines timestamp, machine identity, and sequence number into a compact, sortable 64-bit ID. It scales well, avoids central coordination on every request, and fits the needs of distributed systems that need unique IDs at high throughput.
