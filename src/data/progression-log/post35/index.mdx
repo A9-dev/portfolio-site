@@ -1,0 +1,24 @@
+---
+pubDate: "2026-06-02"
+updatedDate: "2026-06-02"
+worklog:
+  - type: "learn"
+    area: ["System Design"]
+    summary: "read chapter 6 of System Design Interview"
+---
+
+## System Design Interview - An Insider's Guide
+
+Link: https://amzn.eu/d/e3C7p1H
+
+### Chapter 6, Design a Key-Value Store
+
+This chapter walks through the core building blocks of a distributed key-value store and shows how each design choice affects scalability, availability, and consistency.
+
+- **Partitioning with Consistent Hashing** - consistent hashing spreads keys across servers without forcing a full reshuffle every time the cluster changes. It helps with storing large datasets, incremental scaling, and supporting machines with different capacities.
+
+- **Replication and Tunable Consistency** - replicating data across multiple nodes improves read availability and fault tolerance. Quorum-based reads and writes let you tune the balance between consistency and availability, while multi-data center replication helps the system tolerate larger outages.
+
+- **Versioning and Conflict Resolution** - if you want highly available writes, replicas can diverge temporarily. The chapter uses vector clocks to keep track of causality so conflicts can be detected and resolved instead of silently overwriting data.
+
+- **Failure Handling and Repair** - temporary failures can be handled with sloppy quorum and hinted handoff, while permanent replica drift can be repaired with Merkle trees. Together, these techniques help the system recover without requiring full data copies between nodes.
