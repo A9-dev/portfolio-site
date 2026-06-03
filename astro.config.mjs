@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
 import mdx from "@astrojs/mdx";
+import remarkGfm from "remark-gfm";
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,5 +11,9 @@ export default defineConfig({
     plugins: [/** @type {any} */ (tailwindcss())],
   },
 
-  integrations: [mdx()],
+  integrations: [
+    mdx({
+      remarkPlugins: [remarkGfm],
+    }),
+  ],
 });
