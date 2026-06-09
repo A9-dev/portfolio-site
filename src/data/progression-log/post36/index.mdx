@@ -1,0 +1,21 @@
+---
+pubDate: "2026-06-08"
+updatedDate: "2026-06-08"
+worklog:
+  - type: "project"
+    area: ["Go", "net/http", "System Design", "url-shortener"]
+    summary: "built URL shortener with in-memory store"
+---
+
+### URL Shortener System Design Project — In-Memory API (Stage 0)
+
+Started a system design focused project where I will end up gathering a load of data about the effects on throughput of a url-shortener from the use of different configurations (memory allocation, CPU allocation, replica count, cloud compute instance type) and techniques such as caching.
+
+This will also be a good opportunity to continue learning about Golang, Terraform, AWS, docker, and Grafana k6.
+
+At this stage the project is just a quick url shortener written in Go.
+
+- `POST /create` accepts a target URL and stores a mapping from a generated code to that URL in memory.
+- `GET /{code}` looks up the code and returns a `302` redirect with a `Location` header.
+
+The store is a small struct wrapping a `map[string]string` with a `sync.RWMutex` so concurrent reads don't block each other.

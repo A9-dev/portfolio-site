@@ -1,0 +1,14 @@
+---
+pubDate: "2026-06-09"
+updatedDate: "2026-06-09"
+worklog:
+  - type: "project"
+    area: ["Go", "PostgreSQL", "System Design", "url-shortener"]
+    summary: "replaced in-memory store with Postgres using pgxpool"
+---
+
+### URL Shortener — Postgres Data Store (Stage 1)
+
+Replaced the in-memory map from yesterday with a Postgres-backed store using `pgxpool`.
+
+The PostgreSQL database is created using the official docker image, and with docker compose I have set up a seed script which declares the basic table needed to store the URL shortener's data.
