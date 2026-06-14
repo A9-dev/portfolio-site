@@ -1,0 +1,23 @@
+---
+pubDate: "2026-06-14"
+updatedDate: "2026-06-14"
+worklog:
+  - type: "project"
+    area: ["Go", "k6", "System Design", "url-shortener"]
+    summary: "started load testing the URL shortener with Grafana k6"
+---
+
+### URL Shortener: Load Testing with k6
+
+Today I spent some time reading the Grafana k6 docs to figure out what exactly I wanted to be testing. Some of the terms I covered here are as follows:
+
+- Open vs closed load model - closed controls concurrent users (next request waits for the last), so a slow server throttles itself. Open controls the _arrival rate_ regardless of response time, which is closer to real traffic, and the server can't hide behind its own latency.
+- Breakpoint testing - ramping the arrival rate until the system gives out, to find its hard ceiling. With the thresholds above, this is how I'll pin down max sustainable RPS per config.
+- Soak testing - holding a steady, sustainable load for a long stretch to catch gradual degradation (memory growth, pool exhaustion, slow leaks) that a short spike would miss.
+- `ramping-arrival-rate` executor - k6's open-model executor that holds a target RPS, spinning up as many VUs as needed even as responses slow.
+- VU (Virtual User) - the goroutine k6 uses to fire requests. In the open model they're just a pool the executor draws from to sustain the rate, not a fixed user count.
+- Read/write ratio - shaping load to match real usage. A URL shortener is overwhelmingly reads, so I'm weighting ~100:1 toward `GET /{code}` over `POST /create`.
+- `setup()` lifecycle - runs once before any VUs start. I'm using it to seed short codes via `POST /create` so the redirect path has real codes to hit, rather than polluting the numbers mid-test.
+- Thresholds & `abortOnFail` - pass/fail conditions on metrics like p95 latency or error rate. With `abortOnFail`, the test stops the moment a threshold breaks instead of hammering an already-failing service.
+
+Now after writing the stress test script I will work on configuring many different types of deployments, running the breakpoint testing k6 script on each of them and analysing the results.
