@@ -1,0 +1,39 @@
+---
+pubDate: "2026-07-20"
+updatedDate: "2026-07-20"
+worklog:
+  - type: "learn"
+    area: ["System Design"]
+    summary: "read chapter 9 of System Design Interview"
+  - type: "learn"
+    area: ["System Design"]
+    summary: "read chapter 8 of System Design Interview"
+---
+
+## System Design Interview - An Insider's Guide
+
+Link: https://amzn.eu/d/e3C7p1H
+
+### Chapter 8, Design a URL Shortener
+
+This chapter designs a URL shortening service like tinyurl, focusing on how to map long URLs to short ones and back again efficiently at scale.
+
+- **API and Redirect Design** - two REST endpoints handle the flow: a POST to shorten a long URL and a GET to redirect a short one. A 301 redirect is cached permanently by the browser, reducing server load, while a 302 redirect keeps requests flowing through the service so click rate and source can be tracked.
+
+- **Hashing vs Base 62 Conversion** - with 62 possible characters, a 7-character hash covers ~3.5 trillion URLs, more than enough for the estimated 365 billion records. Truncating a well-known hash (CRC32, MD5, SHA-1) needs collision resolution, helped by bloom filters, whereas base 62 conversion of a unique ID avoids collisions entirely.
+
+- **Data Model and Shortening Flow** - keeping everything in a hash table is not feasible for real systems, so `<shortURL, longURL>` mappings live in a relational database. New long URLs are assigned a globally unique ID from a distributed ID generator, which is then base-62 encoded into the short URL.
+
+- **Redirecting at Scale** - reads vastly outnumber writes, so mappings are cached to serve redirects quickly, falling back to the database on a cache miss. Additional talking points include rate limiting, stateless web-tier scaling, database replication and sharding, and analytics.
+
+### Chapter 9, Design a Web Crawler
+
+This chapter designs a scalable web crawler for search engine indexing, covering how to fetch billions of pages politely, avoid duplicates, and stay robust against the traps of the open web.
+
+- **Core Components and Workflow** - the crawler starts from seed URLs and cycles through the URL Frontier (URLs to download), HTML Downloader, content parsing, and link extraction. "Content Seen?" and "URL Seen?" checks, often implemented with bloom filters, eliminate duplicate pages and avoid re-crawling the same links.
+
+- **BFS and the URL Frontier** - crawling is graph traversal, and BFS via a FIFO queue is preferred over DFS since DFS can go too deep. The URL Frontier layers front queues for prioritisation, by PageRank, traffic, or update frequency, and back queues for politeness so no single host gets flooded with requests.
+
+- **Politeness and Performance** - politeness is enforced by mapping each host to a dedicated worker thread with delays between requests, and by respecting robots.txt. Performance comes from distributed crawling, DNS caching, geographic locality, and short timeouts on slow or unresponsive servers.
+
+- **Robustness and Problematic Content** - consistent hashing distributes load and lets servers be added or removed, while saving crawl state enables recovery from failures. The crawler must also detect redundant content via hashes, escape spider traps with maximum URL length limits, and filter out low-value data noise.
