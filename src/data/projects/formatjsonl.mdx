@@ -4,8 +4,7 @@ slug: "formatjsonl"
 summary: "Static web app for formatting JSON Lines."
 publishedAt: "2026-05-29"
 published: true
-featured: false
-coverImage: "/images/projects/formatjsonl/cover-hero.jpg"
+coverImage: "./formatjsonl/cover-hero.jpg"
 tags:
   - JavaScript
   - JSONL
@@ -17,9 +16,18 @@ seo:
   description: "Minimal online JSON Lines formatter"
 ---
 
+import { Image } from "astro:assets";
+import coverHero from "./formatjsonl/cover-hero.jpg";
+
 `formatjsonl.com` is a small utility site for working with JSON Lines. The goal was to make the common workflow simple: paste raw JSONL, drop in a file, and immediately get something easier to read.
 
-![Cover image for the formatjsonl project](/images/projects/formatjsonl/cover-hero.jpg)
+<Image
+  src={coverHero}
+  alt="Cover image for the formatjsonl project"
+  width={1200}
+  format="webp"
+  quality={90}
+/>
 
 ## Links
 

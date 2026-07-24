@@ -4,7 +4,6 @@ slug: "pki-certificate-vending-machine"
 summary: "Terraform and Go project that provisions an IAM-protected AWS API for issuing short-lived X.509 certificates."
 publishedAt: "2026-05-07"
 published: true
-featured: true
 tags:
   - Terraform
   - AWS
@@ -12,11 +11,14 @@ tags:
   - PKI
   - IAM
   - Lambda
-coverImage: "/images/projects/pki-certificate-vending-machine/cover-hero.jpg"
+coverImage: "./pki-certificate-vending-machine/cover-hero.jpg"
 seo:
   title: "API-Driven PKI on AWS"
   description: "Terraform and Go project for issuing short-lived X.509 certificates through an IAM-protected AWS API."
 ---
+
+import { Image } from "astro:assets";
+import coverHero from "./pki-certificate-vending-machine/cover-hero.jpg";
 
 This project provisions an IAM-protected certificate issuance API on AWS. It uses Terraform for infrastructure, API Gateway for the public entry point, a Go Lambda for signing, and Secrets Manager for CA material.
 
@@ -27,7 +29,13 @@ The goal was to show a small but realistic PKI workflow: clients generate keys l
 - Go Lambda that validates CSRs and signs certificates
 - Clear trade-offs called out for production hardening
 
-![Cover image for the certificate issuer project](/images/projects/pki-certificate-vending-machine/cover-hero.jpg)
+<Image
+  src={coverHero}
+  alt="Cover image for the certificate issuer project"
+  width={1200}
+  format="webp"
+  quality={90}
+/>
 
 ## Problem
 

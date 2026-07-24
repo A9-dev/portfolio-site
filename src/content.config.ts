@@ -33,22 +33,22 @@ const projects = defineCollection({
     pattern: "**/*.(md|mdx)",
     base: "./src/data/projects",
   }),
-  schema: z.object({
-    title: z.string(),
-    slug: z.string(),
-    summary: z.string(),
-    publishedAt: z.coerce.date(),
-    published: z.boolean().default(true),
-    featured: z.boolean().default(false),
-    tags: z.array(z.string()).default([]),
-    coverImage: z.string().optional(),
-    seo: z
-      .object({
-        title: z.string().optional(),
-        description: z.string().optional(),
-      })
-      .optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      slug: z.string(),
+      summary: z.string(),
+      publishedAt: z.coerce.date(),
+      published: z.boolean().default(true),
+      tags: z.array(z.string()).default([]),
+      coverImage: image().optional(),
+      seo: z
+        .object({
+          title: z.string().optional(),
+          description: z.string().optional(),
+        })
+        .optional(),
+    }),
 });
 
 // 4. Export a single `collections` object to register your collection(s)

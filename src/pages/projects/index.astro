@@ -6,13 +6,7 @@ import Title from "../../components/Title.astro";
 
 const projects: CollectionEntry<"projects">[] = (
   await getCollection("projects", ({ data }) => data.published)
-).sort((a, b) => {
-  if (a.data.featured !== b.data.featured) {
-    return Number(b.data.featured) - Number(a.data.featured);
-  }
-
-  return b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf();
-});
+).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 ---
 
 <BaseLayout title="Projects">
