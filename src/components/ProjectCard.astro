@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -13,9 +14,13 @@ const { project } = Astro.props;
 >
   {
     project.data.coverImage ? (
-      <img
+      <Image
         src={project.data.coverImage}
         alt={`${project.data.title} cover image`}
+        width={800}
+        densities={[1, 2]}
+        format="webp"
+        quality={90}
         class="h-52 w-full object-cover"
         loading="lazy"
       />
