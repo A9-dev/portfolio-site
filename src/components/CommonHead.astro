@@ -17,7 +17,9 @@ const { title } = Astro.props;
 <script is:inline>
   function getIsDark() {
     const stored = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
     return stored ? stored === "dark" : prefersDark;
   }
   // Apply on initial load
