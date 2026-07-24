@@ -1,0 +1,90 @@
+---
+import { Image } from "astro:assets";
+import egoIsTheEnemy from "../data/index/books/ego-is-the-enemy.jpg";
+import dailyStoic from "../data/index/books/daily-stoic.jpg";
+import designingDataIntensiveApplications from "../data/index/books/designing-data-intensive-applications.jpg";
+import softwareEngineeringAtGoogle from "../data/index/books/software-engineering-at-google.jpg";
+import siteReliabilityEngineering from "../data/index/books/site-reliability-engineering.jpg";
+import buildingMicroservices from "../data/index/books/building-microservices.jpg";
+import systemDesignInterview from "../data/index/books/system-design-interview.jpg";
+
+const books = [
+  {
+    title: "Ego is the Enemy",
+    author: "Ryan Holiday",
+    cover: egoIsTheEnemy,
+    href: "https://www.penguinrandomhouse.com/books/318016/ego-is-the-enemy-by-ryan-holiday/",
+  },
+  {
+    title: "The Daily Stoic",
+    author: "Ryan Holiday & Stephen Hanselman",
+    cover: dailyStoic,
+    href: "https://www.penguinrandomhouse.com/books/545426/the-daily-stoic-by-ryan-holiday-and-stephen-hanselman/",
+  },
+  {
+    title: "Designing Data-Intensive Applications",
+    author: "Martin Kleppmann (1st & 2nd editions)",
+    cover: designingDataIntensiveApplications,
+    href: "https://martin.kleppmann.com/2026/03/24/designing-data-intensive-applications-2e.html",
+  },
+  {
+    title: "Software Engineering at Google",
+    author: "Titus Winters, Tom Manshreck & Hyrum Wright",
+    cover: softwareEngineeringAtGoogle,
+    href: "https://www.oreilly.com/library/view/software-engineering-at/9781492082781/",
+  },
+  {
+    title: "Site Reliability Engineering",
+    author:
+      "Betsy Beyer, Chris Jones, Jennifer Petoff & Niall Richard Murphy (1st & 2nd editions)",
+    cover: siteReliabilityEngineering,
+    href: "https://www.oreilly.com/library/view/site-reliability-engineering/9798341607675/",
+  },
+  {
+    title: "Building Microservices",
+    author: "Sam Newman",
+    cover: buildingMicroservices,
+    href: "https://www.oreilly.com/library/view/building-microservices-2nd/9781492034018/",
+  },
+  {
+    title: "System Design Interview",
+    author: "Alex Xu",
+    cover: systemDesignInterview,
+    href: "https://www.amazon.co.uk/System-Design-Interview-insiders-Second/dp/B08CMF2CQF",
+  },
+];
+---
+
+<div class="not-prose grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
+  {
+    books.map((book) => (
+      <a
+        href={book.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group flex flex-col gap-2"
+      >
+        <div class="overflow-hidden border border-neutral-200/80 shadow-sm transition-all duration-200 group-hover:-translate-y-1 group-hover:border-neutral-300 dark:border-neutral-700/80 dark:group-hover:border-neutral-600">
+          <Image
+            src={book.cover}
+            alt={`Cover of ${book.title} by ${book.author}`}
+            width={400}
+            densities={[1, 2]}
+            format="webp"
+            quality={90}
+            class="aspect-[2/3] w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div class="space-y-0.5">
+          <p class="text-sm font-semibold text-neutral-950 dark:text-neutral-50">
+            {book.title}
+          </p>
+          <p class="text-xs text-neutral-500 dark:text-neutral-400">
+            {book.author}
+          </p>
+        </div>
+      </a>
+    ))
+  }
+</div>
