@@ -7,6 +7,8 @@ import remarkGfm from "remark-gfm";
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: true,
+
   vite: {
     plugins: [/** @type {any} */ (tailwindcss())],
   },

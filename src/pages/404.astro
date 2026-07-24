@@ -1,0 +1,17 @@
+---
+import Title from "../components/Title.astro";
+import BaseLayout from "../components/BaseLayout.astro";
+---
+
+<BaseLayout title="Page Not Found">
+  <Title>Page Not Found</Title>
+  <p class="text-lg text-neutral-600 dark:text-neutral-300">
+    The page you're looking for doesn't exist.
+  </p>
+  <a
+    href="/"
+    class="mt-4 text-blue-700 underline transition-colors duration-200 hover:text-blue-500 dark:text-blue-300 dark:hover:text-blue-200"
+  >
+    Back home
+  </a>
+</BaseLayout>
